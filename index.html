@@ -4,81 +4,116 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>No Safe Ground — A Soma Entertainment Podcast</title>
-<meta name="description" content="No Safe Ground is a long-form interview podcast hosted by Pól Ó Géibheannaigh, sitting with writers, witnesses, and those who refuse to be silent on empire, exile, and memory.">
-<link rel="stylesheet" href="style.css">
+<meta name="description" content="No Safe Ground is a long-form interview podcast hosted by Pól Ó Geibheannaigh, sitting with writers, witnesses, and those who refuse to be silent on empire, exile, and memory.">
+<style>
+  :root { --ink:#0d0d0f; --paper:#f2ede2; --gold:#c9a961; --red:#b34a4a; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--ink); color:var(--paper); font-family:Georgia,'Times New Roman',serif; line-height:1.6; }
+  .sans { font-family:Helvetica,Arial,sans-serif; }
+  header { min-height:92vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
+    background:linear-gradient(rgba(8,8,10,.55),rgba(8,8,10,.92)), url(poster.jpg) center/cover;
+    padding:48px 20px 28px; }
+  h1 { font-size:clamp(40px,8.4vw,96px); letter-spacing:.12em; font-weight:700; }
+  .sub { font-size:clamp(16px,2.4vw,24px); color:var(--gold); margin-top:14px; letter-spacing:.06em; }
+  .tag { font-size:clamp(13px,1.8vw,17px); color:#cfc8b8; margin-top:8px; }
+  .rule { width:80px; height:2px; background:var(--gold); margin:26px auto; }
+  .play { display:inline-block; margin-top:10px; padding:14px 34px; border:1px solid var(--gold); color:var(--paper);
+    text-decoration:none; letter-spacing:.18em; font-size:14px; transition:all .25s; }
+  .play:hover { background:var(--gold); color:#111; }
+  .lang { margin-top:18px; font-size:13px; color:#9a9384; letter-spacing:.08em; }
+  section.video { max-width:980px; margin:0 auto; padding:56px 20px 20px; }
+  .frame { border:1px solid #2a2a30; box-shadow:0 30px 80px rgba(0,0,0,.6); }
+  video { width:100%; display:block; background:#000; }
+  section.story { max-width:860px; margin:0 auto; padding:64px 24px; }
+  .kicker { color:var(--gold); letter-spacing:.28em; font-size:13px; margin-bottom:14px; }
+  h2 { font-size:clamp(26px,4vw,40px); margin-bottom:22px; font-weight:700; }
+  .quote { border-left:3px solid var(--red); padding:6px 0 6px 22px; margin:30px 0; font-style:italic;
+    font-size:clamp(18px,2.6vw,23px); color:#e7dfcd; }
+  p { margin-bottom:18px; color:#d8d2c4; font-size:clamp(15px,2vw,18px); }
+  strong { color:var(--paper); }
+  section.credits { border-top:1px solid #232329; background:#0a0a0c; }
+  .grid { max-width:980px; margin:0 auto; padding:56px 24px; display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:36px; }
+  h3 { color:var(--gold); font-size:14px; letter-spacing:.2em; margin-bottom:14px; font-family:Helvetica,Arial,sans-serif; }
+  .credits p, .credits li { font-size:14.5px; color:#b8b2a4; }
+  ul { list-style:none; } li { margin-bottom:8px; }
+  section.contact { text-align:center; padding:70px 24px 90px; }
+  .mail { display:inline-block; margin-top:18px; padding:14px 34px; background:var(--gold); color:#111; text-decoration:none;
+    letter-spacing:.06em; font-weight:bold; }
+  footer { text-align:center; padding:26px; color:#6d6759; font-size:12.5px; letter-spacing:.08em; border-top:1px solid #1c1c21; }
+  .tri span { display:inline-block; width:10px; height:6px; margin:0 3px; }
+</style>
 </head>
 <body>
 
-<header class="hero">
+<header>
   <h1>NO SAFE GROUND</h1>
+  <div class="sub">with Pól Ó Geibheannaigh</div>
+  <div class="tag sans" style="letter-spacing:.34em;margin-top:22px">SUBSCRIBE. SHARE. RETURN.</div>
   <div class="rule"></div>
-  <p class="tagline">SUBSCRIBE. SHARE. RETURN.</p>
+  <a class="play sans" href="#watch">▶&nbsp; WATCH THE INTRO — 59s</a>
+  <div class="lang sans">DERRY · BEIRUT · CAIRO · TEHRAN · PALESTINE</div>
 </header>
 
-<main>
-  <section class="episode">
-    <h2>Episode 1 — Tawfiq Al-Ghussein</h2>
-    <p class="episode-sub">Empire, Exile and the Administration of Palestine</p>
+<section class="video" id="watch">
+  <div class="frame">
+    <video controls preload="metadata" poster="poster.jpg">
+      <source src="no_safe_ground_intro.mp4" type="video/mp4">
+      Your browser does not support embedded video.
+    </video>
+  </div>
+</section>
 
-    <p>
-      Chelsea, London. October 2020. A photograph: two men, one Palestinian,
-      one Irish, side by side in the foyer of Nell Gwynn House. The caption
-      reads: <em>"When Palestine and Ireland meet there's always bonhomie and
-      solidarity."</em> Six years later, we return to the same foyer.
-    </p>
+<section class="story">
+  <div class="kicker sans">THE PODCAST</div>
+  <h2>&ldquo;No safe ground &mdash; until there&rsquo;s<br>a safe ground.&rdquo;</h2>
+  <p><strong>No Safe Ground</strong> is a conversation between Ireland and the Middle East &mdash; two places shaped by
+  occupation, partition and resistance, and two peoples who kept their dignity anyway.</p>
+  <p>P&oacute;l &Oacute; Geibheannaigh was born in Derry, behind the checkpoints and curfews of British occupation.
+  Twenty years later he was reporting across the region &mdash; Cairo, Beirut, Tehran &mdash; as a journalist,
+  artist and filmmaker. In every conversation he brings the one thing few others can: a life that lived it,
+  on both sides of the same colonial playbook.</p>
+  <div class="quote">&ldquo;A boy from Derry doesn&rsquo;t mistake occupation for anything else.&rdquo;</div>
+  <p>Each episode: dialogue, not spectacle &mdash; with the journalists, scholars, artists and witnesses
+  who are building the record while the rest of the world looks away.</p>
+</section>
 
-    <p>
-      In this first episode of <strong>No Safe Ground</strong>, Pól Ó
-      Géibheannaigh sits with writer and witness Tawfiq Al-Ghussein for a
-      long-form conversation on exile, memory, language, and what has
-      happened to the world — and to Palestine — in the years between those
-      two dates.
-    </p>
-
-    <p class="statement">
-      This is not commentary. It is testimony.<br>
-      It is not analysis. It is presence.<br>
-      It is the conversation as documentary, unmediated and uncut.
-    </p>
-
-    <p>
-      Recorded at Nell Gwynn House, Chelsea — a building whose Art Deco
-      interiors were completed in the years of the British Mandate, when the
-      ground beneath Palestine was already being redrawn.
-    </p>
-
-    <p>
-      Tawfiq Al-Ghussein is the author of <em>The Administration of
-      Palestine: Authority Unresolved</em> (Britain Palestine Project, 2026).
-      His grandfather served on the Arab Higher Committee and was exiled to
-      the Seychelles after the Arab Revolt; his father served on the PLO
-      Executive Committee and chaired the Palestine National Fund from 1984
-      to 1996.
-    </p>
-
-    <div class="listen-links">
-      <a href="#" class="btn" id="spotify-link">Listen on Spotify</a>
-      <a href="#" class="btn" id="apple-link">Listen on Apple Podcasts</a>
+<section class="credits">
+  <div class="grid">
+    <div>
+      <h3>YOUR HOST</h3>
+      <p><strong>P&oacute;l &Oacute; Geibheannaigh</strong> &mdash; journalist, film producer and artist (30 years).
+      Edited for <em>Al-Ahram</em> in Cairo; contributed to Al Jazeera, BBC Radio Ulster, France 24, Press TV;
+      lectured at SOAS on Islamic architecture. MA Near &amp; Middle Eastern Studies (SOAS). Producer at
+      Soma Entertainment (<em>Macalla</em>). Born in Derry; based in London.</p>
     </div>
-  </section>
+    <div>
+      <h3>EPISODES</h3>
+      <ul>
+        <li><strong>Episode 01</strong> &mdash; In conversation with Tawfiq</li>
+        <li>Further episodes to be announced</li>
+      </ul>
+    </div>
+    <div>
+      <h3>LISTEN / FOLLOW</h3>
+      <ul>
+        <li>Video &mdash; first episode above</li>
+        <li>Audio &mdash; coming to all platforms</li>
+        <li>Transcripts &mdash; with every episode</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-  <section class="about">
-    <h3>About No Safe Ground</h3>
-    <p>
-      No Safe Ground is a long-form interview podcast hosted by Pól Ó
-      Géibheannaigh, sitting down with writers, witnesses, and those who
-      refuse to be silent on the Middle East, empire, exile, and memory.
-      Recorded as unmediated, uncut conversation — testimony rather than
-      commentary, presence rather than analysis.
-    </p>
-    <p class="production-credit">A Soma Entertainment production.</p>
-  </section>
-</main>
+<section class="contact">
+  <div class="kicker sans">CONTACT &amp; COLLABORATION</div>
+  <h2>Talk to us.</h2>
+  <p class="sans" style="color:#b8b2a4">Guests, press, platforms &mdash; get in touch directly.</p>
+  <a class="mail sans" href="mailto:ogeibheannaigh@me.com">ogeibheannaigh@me.com</a>
+</section>
 
 <footer>
-  <p>Subscribe for long-form conversations with writers, witnesses, and
-  those who refuse to be silent.</p>
-  <p class="domain">nosafeground.co.uk</p>
+  <div class="tri"><span style="background:#169b62"></span><span style="background:#f2ede2"></span><span style="background:#b34a4a"></span></div>
+  <br>NO SAFE GROUND &mdash; a Soma Entertainment podcast &middot; &copy; 2026 P&oacute;l &Oacute; Geibheannaigh
 </footer>
 
 </body>
