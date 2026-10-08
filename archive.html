@@ -31,6 +31,7 @@
       margin-bottom: 8px;
     }
     .header p { color: var(--text-muted); font-size: 0.95rem; }
+    .header .domain-link { display: inline-block; margin-top: 6px; color: var(--gold-muted); text-decoration: none; font-size: 0.85rem; letter-spacing: 0.1em; }
     .controls { display: flex; flex-direction: column; gap: 14px; margin-bottom: 28px; }
     .search-input {
       width: 100%;
@@ -79,19 +80,24 @@
     .speaker { color: var(--gold-primary); font-weight: 600; }
     .text-body { line-height: 1.6; font-size: 1rem; }
     .highlight { background: rgba(205, 177, 115, 0.3); color: #FFF; padding: 0 2px; }
+    .footer { text-align: center; margin-top: 40px; color: var(--gold-muted); font-size: 0.85rem; letter-spacing: 0.1em; }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="header">
-      <h1>The Archive</h1>
-      <p>Searchable transcripts & unmediated documentary records</p>
+      <h1>No Safe Ground</h1>
+      <p>The Archive — Searchable Transcripts & Documentary Records</p>
+      <a href="https://nosafeground.co.uk" class="domain-link">nosafeground.co.uk</a>
     </div>
     <div class="controls">
       <input type="text" id="queryInput" class="search-input" placeholder="Search transcripts by spoken phrase, speaker, or keyword..." />
       <div class="filters" id="tagFilters"></div>
     </div>
     <div id="results"></div>
+    <div class="footer">
+      <p>NO SAFE GROUND · SUBSCRIBE. SHARE. RETURN. · <a href="https://nosafeground.co.uk" style="color: var(--gold-primary); text-decoration: none;">nosafeground.co.uk</a></p>
+    </div>
   </div>
 
   <script>
@@ -121,7 +127,7 @@
         timestamp: "01:15",
         speaker: "Pól Ó Géibheannaigh",
         tags: ["Mandate Architecture", "Chelsea"],
-        text: "Nell Gwynn House, Chelsea — a building whose Art Deco interiors were completed in the years of the British Mandate."
+        text: "Nell Gwynn House, Chelsea — a building whose Art Deco interiors were completed in the years of the British Mandate, when the ground beneath Palestine was already being redrawn."
       }
     ];
 
