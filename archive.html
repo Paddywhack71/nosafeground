@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>No Safe Ground — The Archive</title>
+  <style>
+    :root {
+      --bg-plum: #120914;
+      --bg-surface: #1C1020;
+      --gold-primary: #CDB173;
+      --gold-muted: #A88F54;
+      --text-main: #F5F2EB;
+      --text-muted: #9E968F;
+      --border-line: rgba(205, 177, 115, 0.25);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-plum);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, serif;
+      padding: 40px 20px;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    .header { text-align: center; margin-bottom: 36px; }
+    .header h1 {
+      color: var(--gold-primary);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+    .header p { color: var(--text-muted); font-size: 0.95rem; }
+    .controls { display: flex; flex-direction: column; gap: 14px; margin-bottom: 28px; }
+    .search-input {
+      width: 100%;
+      padding: 16px 20px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-line);
+      border-radius: 4px;
+      color: var(--text-main);
+      font-size: 1.05rem;
+      outline: none;
+    }
+    .search-input:focus { border-color: var(--gold-primary); }
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; }
+    .filter-btn {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-line);
+      color: var(--gold-muted);
+      padding: 6px 14px;
+      border-radius: 2px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .filter-btn.active {
+      background: var(--gold-primary);
+      color: var(--bg-plum);
+      border-color: var(--gold-primary);
+      font-weight: 600;
+    }
+    .entry-card {
+      background: var(--bg-surface);
+      border-left: 3px solid var(--gold-primary);
+      padding: 20px;
+      margin-bottom: 16px;
+      border-radius: 0 4px 4px 0;
+    }
+    .entry-meta {
+      display: flex;
+      justify-content: space-between;
+      color: var(--gold-muted);
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+    .speaker { color: var(--gold-primary); font-weight: 600; }
+    .text-body { line-height: 1.6; font-size: 1rem; }
+    .highlight { background: rgba(205, 177, 115, 0.3); color: #FFF; padding: 0 2px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>The Archive</h1>
+      <p>Searchable transcripts & unmediated documentary records</p>
+    </div>
+    <div class="controls">
+      <input type="text" id="queryInput" class="search-input" placeholder="Search transcripts by spoken phrase, speaker, or keyword..." />
+      <div class="filters" id="tagFilters"></div>
+    </div>
+    <div id="results"></div>
+  </div>
+
+  <script>
+    const sampleData = [
+      {
+        id: "seg-01",
+        episode: "Episode 01",
+        guest: "Tawfiq Al-Ghussein",
+        timestamp: "00:34",
+        speaker: "Tawfiq Al-Ghussein",
+        tags: ["Exile", "Testimony"],
+        text: "There is no safe ground. There never was. The question is what you do when you finally admit it."
+      },
+      {
+        id: "seg-02",
+        episode: "Episode 01",
+        guest: "Tawfiq Al-Ghussein",
+        timestamp: "00:18",
+        speaker: "Pól Ó Géibheannaigh",
+        tags: ["Archive", "Solidarity"],
+        text: "When Palestine and Ireland meet there's always bonhomie and solidarity. Six years later, we return to the same foyer."
+      },
+      {
+        id: "seg-03",
+        episode: "Episode 01",
+        guest: "Tawfiq Al-Ghussein",
+        timestamp: "01:15",
+        speaker: "Pól Ó Géibheannaigh",
+        tags: ["Mandate Architecture", "Chelsea"],
+        text: "Nell Gwynn House, Chelsea — a building whose Art Deco interiors were completed in the years of the British Mandate."
+      }
+    ];
+
+    let activeTag = "";
+
+    function initFilters() {
+      const tags = Array.from(new Set(sampleData.flatMap(d => d.tags)));
+      const container = document.getElementById("tagFilters");
+      container.innerHTML = `<button class="filter-btn active" onclick="setFilter('')">All</button>` +
+        tags.map(t => `<button class="filter-btn" onclick="setFilter('${t}')">${t}</button>`).join("");
+    }
+
+    function setFilter(tag) {
+      activeTag = tag;
+      document.querySelectorAll(".filter-btn").forEach(btn => {
+        btn.classList.toggle("active", (btn.textContent === tag) || (!tag && btn.textContent === "All"));
+      });
+      render();
+    }
+
+    function render() {
+      const q = document.getElementById("queryInput").value.toLowerCase().trim();
+      const container = document.getElementById("results");
+      container.innerHTML = "";
+
+      const filtered = sampleData.filter(d => {
+        const matchesQ = !q || d.text.toLowerCase().includes(q) || d.speaker.toLowerCase().includes(q);
+        const matchesTag = !activeTag || d.tags.includes(activeTag);
+        return matchesQ && matchesTag;
+      });
+
+      if (!filtered.length) {
+        container.innerHTML = `<p style="text-align: center; color: var(--text-muted); margin-top: 30px;">No archive entries found.</p>`;
+        return;
+      }
+
+      filtered.forEach(d => {
+        let t = d.text;
+        if (q) t = t.replace(new RegExp(`(${q})`, "gi"), `<span class="highlight">$1</span>`);
+        const el = document.createElement("div");
+        el.className = "entry-card";
+        el.innerHTML = `
+          <div class="entry-meta">
+            <span>${d.episode} · ${d.timestamp}</span>
+            <span class="speaker">${d.speaker}</span>
+          </div>
+          <div class="text-body">${t}</div>
+        `;
+        container.appendChild(el);
+      });
+    }
+
+    document.getElementById("queryInput").addEventListener("input", render);
+    initFilters();
+    render();
+  </script>
+</body>
+</html>
